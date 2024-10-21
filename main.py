@@ -2,7 +2,7 @@ from bank import Bank
 from user import User
 from admin import Admin
 
-def user_op(user):
+def user_op(user,bank):
 
     while True:
         print("\n___________ USER OPTION __________")
@@ -26,14 +26,15 @@ def user_op(user):
         elif op == 3:
             amount = int(input("Enter Withdraw Amount: "))
             user.withdraw(amount)
+
         elif op == 4:
             amount = int(input("Enter Loan Amount: "))
-            user.take_loan(amount)
+            user.take_loan(amount,bank)
 
         elif op == 5:
             onno_account = int(input("Enter a account number: "))
             amount = int(input("Enter Transfer Amount: "))
-            user.transfer(onno_account,amount)
+            user.transfer(onno_account,amount,bank)
 
         elif op == 6:
             user.transaction_history()
@@ -89,7 +90,9 @@ def admin_op(admin):
             print("INVALID OPTION")
 
 
-def main():
+def main(bank):
+    # bank = Bank()
+    admin = Admin()
 
     while True:
         print("\n__________ WELCOME TO THE SONALI BANK _________")
@@ -97,7 +100,7 @@ def main():
         print("2. User")
         print("3. Exit")
 
-        pos = input("Enter Your Position")
+        pos = input("Enter Your Position: ")
 
         if pos == "1":
             admin_password = input("Enter Admin Password: ")
@@ -110,7 +113,7 @@ def main():
             account_num = int(input("Enter Your Account Number: "))
             if account_num in bank.account:
                 user = bank.account[account_num]
-                user_op(user)
+                user_op(user,bank)
             else:
                 print("404 Not Found")
 
@@ -120,7 +123,8 @@ def main():
         else:
             print("Try Again")
 
-main()           
+bank = Bank()
+main(bank)           
 
 
 
