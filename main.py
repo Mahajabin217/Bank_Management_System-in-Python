@@ -92,7 +92,7 @@ def admin_op(admin):
 
 def main(bank):
     # bank = Bank()
-    admin = Admin()
+    admin = Admin(bank)
 
     while True:
         print("\n__________ WELCOME TO THE SONALI BANK _________")
@@ -125,6 +125,7 @@ def main(bank):
 
 bank = Bank()
 main(bank)           
+
 
 
 
